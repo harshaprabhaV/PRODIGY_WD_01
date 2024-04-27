@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HomePage </title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+        </div>
+        <nav>
+            <ul>
+                <li class="items"><a href="#home" class="links">HOME</a></li>
+                <li class="items"><a href="#about" class="links">ABOUT</a></li>
+                <li class="items"><a href="#contact" class="links">CONTACT</a></li>
+                <li class="items"><a href="#login" class="links">LOGIN</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="sections" id="home">
+            <h1>HOME</h1>
+        </div>
+        <div class="sections" id="about">
+            <h1>ABOUT</h1>
+        </div>
+        <div class="sections" id="contact">
+            <h1>CONTACT</h1>
+        </div>
+        <div class="sections" id="login">
+            <h1>LOGIN</h1>
+        </div>
+    </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    var links = document.querySelectorAll(".links");
+    var sections = document.querySelectorAll(".sections");
+    var header = document.querySelector("header");
+
+    window.addEventListener("scroll", function() {
+        if (window.pageYOffset > header.offsetHeight) {
+            header.style.background = "rgba(0,0,0,0.5)";
+        } else {
+            header.style.background = "black";
+        }
+
+        var current = "home";
+        sections.forEach(function(section) {
+            const sectionTop = section.offsetTop;
+            if (window.pageYOffset >= sectionTop - 60) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        links.forEach(function(item) {
+            item.classList.remove("active");
+            if (item.getAttribute("href") === "#" + current) {
+                item.classList.add("active");
+            } else {
+                item.classList.remove("active");
+            }
+        });
+    });
+});
+    </script>
+</body>
+</html>
